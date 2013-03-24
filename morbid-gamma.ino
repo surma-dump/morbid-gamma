@@ -1,6 +1,6 @@
 // Duration between trigger presses
 // Maximum: 4294967295 ms =~ 50 days
-#define TRIGGER_INTERVAL 0
+#define TRIGGER_INTERVAL 4000
 #define TRIGGER_DURATION 500
 // Number of degrees to turn
 #define ANGULAR_DISTANCE 25
@@ -28,11 +28,11 @@ void loop() {
   // Stopping mechanism
   while(TRIGGER_INTERVAL == 0);
   while(true) {
-    servo.write(TRIGGER_POS);
-    digitalWrite(LED_PIN, HIGH);
-    delay(TRIGGER_DURATION);
     servo.write(UNTRIGGER_POS);
     digitalWrite(LED_PIN, LOW);
     delay(TRIGGER_INTERVAL);
+    servo.write(TRIGGER_POS);
+    digitalWrite(LED_PIN, HIGH);
+    delay(TRIGGER_DURATION);
   }
 }
